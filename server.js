@@ -24,7 +24,7 @@ const port = 8000;
 // Spin up the server
 const server = app.listen(port, listening);
  function listening(){
-    // console.log(server);
+    console.log(server);
     console.log(`running on localhost: ${port}`);
   };
 
