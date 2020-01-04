@@ -13,7 +13,7 @@ const content = document.getElementById('content')
 
 // OpenWeatherApi configuration
 const url = 'https://api.openweathermap.org/data/2.5/weather'
-const APIKey = '72d4d799de2aecd4c7267456faf6e47b'
+const APIKey = 'a080769c9f130da7b30fd909b8360468'
 
 // Create a new date instance dynamically with JS
 let d = new Date()

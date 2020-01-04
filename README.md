@@ -24,5 +24,8 @@ If you are interested in testing your code as you go, you can use `tests.js` as 
 * [A Beginner’s Guide to npm — the Node Package Manager](https://www.sitepoint.com/beginners-guide-node-package-manager/)
 * [Using the Package.json File to Create an NPM Package](https://www.youtube.com/watch?v=fqivzaG-YSo)
 * [Introduction to NPM and the Package.json](https://www.youtube.com/watch?v=gKyRqFgJt6k)
+* [OpenWeatherAPI](https://openweathermap.org/api)
+* [Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+* [OpenWeatherMapLayer](https://github.com/google/maps-for-work-samples/blob/master/samples/maps/OpenWeatherMapLayer/OpenWeatherMapLayer.pdf)
 
 # FEND: Weather-Journal App Project
