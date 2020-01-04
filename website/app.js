@@ -19,7 +19,7 @@ const apikey = 'a080769c9f130da7b30fd909b8360468'
 
 // Create a new date instance dynamically with JS
 let d = new Date()
-let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear()
+let newDate = d.getDate() + '.' + (d.getMonth()+1) + '.' + d.getFullYear()
 
 // Fetch Weather Data from OpenWeatherApi
 const fetchWeather = async (baseURL, zip, apiKey) => {
@@ -56,7 +56,7 @@ const saveData = async (path, data) => {
 // Update UI dynamically
 const updateUI = async (temperature, newDate, feelings) => {
   date.innerText = newDate
-  temp.innerText = `${temperature} deg`
+  temp.innerText = `${temperature} °C`
   content.innerText = feelings
 }
 
@@ -76,4 +76,4 @@ button.addEventListener('click', () => {
       // There can be proper error handling with UI
       console.error(e)
     })
-})
+});
