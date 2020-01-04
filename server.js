@@ -28,13 +28,13 @@ const server = app.listen(port, listening);
     console.log(`running on localhost: ${port}`);
   };
 
-// ROUTES!
-app.get('/all',(req,res)=>{
+/* // ROUTES!
+app.get('/apidata',(req,res)=>{
     res.send(projectData);
 });
 
 // POST route adds data to ProjectData
-app.post('/add', function (request, response) {
+app.post('/apidata', function (request, response) {
     newEntry = {
         temperature: request.body.temperature,
         date: request.body.date,
@@ -42,4 +42,19 @@ app.post('/add', function (request, response) {
     };
 
     projectData.unshift(newEntry);
-});
+}); */
+// GET Route to retrieve projectData
+app.get('/apidata', (req, res) => {
+    res.status(200).send(projectData)
+  })
+  
+  // POST Route to store date, temp and user input in projectData
+  app.post('/apidata', (req, res) => {
+    const {date, temp, content} = req.body
+    projectData[date] = {
+      temp,
+      content,
+    }
+    res.status(201).send()
+  });
+console.log(projectData);
