@@ -12,13 +12,13 @@ const temp = document.getElementById('temp')
 const content = document.getElementById('content')
 
 // OpenWeatherApi configuration
-// const url = 'https://api.openweathermap.org/data/2.5/weather'
-// const APIKey = 'a080769c9f130da7b30fd909b8360468'
+
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather'
 const apikey = 'a080769c9f130da7b30fd909b8360468'
 
 // Create a new date instance dynamically with JS
 let d = new Date()
+// day/month/year format(Note:Open Weather API starts counting months from 0)
 let newDate = d.getDate() + '.' + (d.getMonth()+1) + '.' + d.getFullYear()
 
 // Fetch Weather Data from OpenWeatherApi

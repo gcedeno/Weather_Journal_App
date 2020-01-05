@@ -3,6 +3,7 @@ projectData = {};
 
 // Require Express to run server and routes
 const express = require('express')
+/* Dependencies */
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const fetch = require('node-fetch')
@@ -28,33 +29,33 @@ const server = app.listen(port, listening);
     console.log(`running on localhost: ${port}`);
   };
 
-/* // ROUTES!
-app.get('/apidata',(req,res)=>{
-    res.send(projectData);
-});
-
-// POST route adds data to ProjectData
-app.post('/apidata', function (request, response) {
-    newEntry = {
-        temperature: request.body.temperature,
-        date: request.body.date,
-        userResponse: request.body.userResponse
-    };
-
-    projectData.unshift(newEntry);
-}); */
+// ROUTES!
 // GET Route to retrieve projectData
+//Respond with JS object when a GET request is made to the homepage
 app.get('/apidata', (req, res) => {
-    res.status(200).send(projectData)
-  })
+    /*console.log(req)//information from a GET request */
+    res.send(projectData)
+  });
   
   // POST Route to store date, temp and user input in projectData
-  app.post('/apidata', (req, res) => {
+ /*  app.post('/apidata', (req, res) => {
     const {date, temp, content} = req.body
     projectData[date] = {
       temp,
       content,
     }
-    res.status(201).send()
+    res.send()
+  }); */
+// Debugging and testing 
+  app.post('/apidata', (req, res) => {
+  /*   const {date, temp, content} = req.body
+    projectData = {
+      date,
+      temp,
+      content,
+    }; */
+    projectData = req.body
+    res.send()
   });
+
 console.log(projectData);
