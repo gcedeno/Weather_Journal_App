@@ -27,16 +27,22 @@ const fetchWeather = async (baseURL, zip, apiKey) => {
     const request = await fetch(
       `${baseURL}?zip=${zip},us&units=metric&APPID=${apiKey}`,
     )
-    const result = await request.json()
-    // destructuring of the result object
+    const result = await request.json();
+    //Showing the fetched data from openweather-api
+    console.log(result);
+    // destructuring of the result object into interesting parameters
+    // idea taken from: https://stackoverflow.com/questions/42475681/using-openweather-json-api-how-to-fetch-the-temperature
+
     const {
-      main: {temp},
+      main: {temp,pressure,humidity},
+      name
     } = result
-    return temp
+    //result["main"]["temp"] //Getting the temp value
+    return result["main"]["temp"]
   } catch (e) {
     throw e
   }
-}
+};
 
 // POST Request to store date, temp and user input
 const saveData = async (path, data) => {
@@ -62,7 +68,7 @@ const updateUI = async (temperature, newDate, feelings) => {
 
 // Event listener
 button.addEventListener('click', () => {
-  //fetchWeather(url, zip.value, APIKey)
+  //Fetching data and updating the UI
   fetchWeather(baseURL, zip.value, apikey)
     .then(temp => {
       return {date: newDate, temp, content: feelings.value}
