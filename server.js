@@ -46,10 +46,9 @@ app.get('/apidata', (req, res) => {
     }
     res.send()
   }); */
-// Debugging and testing 
-  app.post('/apidata', (req, res) => {
+app.post('/apidata', (req, res) => {
     projectData = req.body //Structure of the req.body created in app.js (line74)
     res.send()
   });
 
-console.log(projectData);
+console.log("Initial Project Data when starting the server: ",projectData);
