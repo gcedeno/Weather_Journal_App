@@ -29,14 +29,14 @@ const fetchWeather = async (baseURL, zip, apiKey) => {
     )
     const result = await request.json();
     //Showing the fetched data from openweather-api
-    console.log(result);
+    console.log("original fetched data:\n ", result);
     // destructuring of the result object into interesting parameters
     // idea taken from: https://stackoverflow.com/questions/42475681/using-openweather-json-api-how-to-fetch-the-temperature
-
-    const {
+    /* const {
       main: {temp,pressure,humidity},
       name
     } = result
+    console.log("results data after destructuring:\n ", result); */
     //result["main"]["temp"] //Getting the temp value
     return result["main"]["temp"]
   } catch (e) {
