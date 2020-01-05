@@ -36,9 +36,9 @@ const fetchWeather = async (baseURL, zip, apiKey) => {
       main: {temp,pressure,humidity},
       name
     } = result
-    console.log("results data after destructuring:\n ", result); */
+    */
     //result["main"]["temp"] //Getting the temp value
-    return result["main"]["temp"]
+    return result
   } catch (e) {
     throw e
   }
@@ -56,8 +56,8 @@ const saveData = async (path, data) => {
     })
   } catch (e) {
     throw e
-  }
-}
+  };
+};
 
 // Update UI dynamically
 const updateUI = async (temperature, newDate, feelings) => {
@@ -70,8 +70,9 @@ const updateUI = async (temperature, newDate, feelings) => {
 button.addEventListener('click', () => {
   //Fetching data and updating the UI
   fetchWeather(baseURL, zip.value, apikey)
-    .then(temp => {
-      return {date: newDate, temp, content: feelings.value}
+    .then(result => {
+      //Using return data and retrieved data from the DOM elements to create the structure of the POST request
+      return {date: newDate, temp: result["main"]["temp"], content: feelings.value}
     })
     .then(data => {
       saveData('/apidata', data)

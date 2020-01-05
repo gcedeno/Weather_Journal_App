@@ -25,7 +25,7 @@ const port = 8000;
 // Spin up the server
 const server = app.listen(port, listening);
  function listening(){
-    console.log(server);
+    //console.log(server);
     console.log(`running on localhost: ${port}`);
   };
 
@@ -48,13 +48,7 @@ app.get('/apidata', (req, res) => {
   }); */
 // Debugging and testing 
   app.post('/apidata', (req, res) => {
-  /*   const {date, temp, content} = req.body
-    projectData = {
-      date,
-      temp,
-      content,
-    }; */
-    projectData = req.body
+    projectData = req.body //Structure of the req.body created in app.js (line74)
     res.send()
   });
 
