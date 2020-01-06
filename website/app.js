@@ -45,7 +45,7 @@ const fetchWeather = async (baseURL, zip, apiKey) => {
 };
 
 // POST Request to store date, temp and user input
-/*   const saveData = async (url = '',data = {})=>{
+  const saveData = async (url = '',data = {})=>{
   try{
     console.log("Saving data:",data);
     const response = await fetch(url, {
@@ -59,24 +59,7 @@ const fetchWeather = async (baseURL, zip, apiKey) => {
     });
   } catch (e) {
     throw e
-  };}; */
-  const saveData = async ( url = '', data = {})=>{
-
-    const response = await fetch(url, {
-    method: 'POST', 
-    credentials: 'same-origin', 
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data), // body data type must match "Content-Type" header        
-  });
-
-    try {
-      const newData = await response.json();
-      return newData;
-    }catch(error) {
-      console.log('error',error);
-    };
+  };
 };
 // Update UI dynamically
 /*Original code */
