@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+projectData = [];//{};
 
 // Require Express to run server and routes
 const express = require('express')
@@ -32,23 +32,32 @@ const server = app.listen(port, listening);
 // ROUTES!
 // GET Route to retrieve projectData
 //Respond with JS object when a GET request is made to the homepage
-app.get('/apidata', (req, res) => {
+//app.get('/apidata', (req, res) => { //original route
+app.get('/all', (req, res) => {  
     /*console.log(req)//information from a GET request */
-    res.send(projectData)
+    res.status(200).send(projectData)
   });
   
   // POST Route to store date, temp and user input in projectData
- /*  app.post('/apidata', (req, res) => {
+ //app.post('/apidata', (req, res) => { //original post 
+ app.post('/apidata', (req, res) => {
     const {date, temp, content} = req.body
-    projectData[date] = {
+    //projectData = {
+    let newEntry = {
+      date,
       temp,
-      content,
-    }
-    res.send()
-  }); */
-app.post('/apidata', (req, res) => {
-    projectData = req.body //Structure of the req.body created in app.js (line74)
-    res.send()
-  });
+      content
+    };
+    projectData.unshift(newEntry); //add to the front of the array
+    res.status(201).send();
+    console.log("New Data Entry:",newEntry)//
+    console.log("Updated Project Data:\n",projectData);
+  }); 
+/*app.post('/apidata', (req, res) => {
+    //projectData.push(req.body)
+    projectData = req.body; //Structure of the req.body created in app.js (line74)
+    res.send();
+    console.log(projectData);
+  });*/
 
 console.log("Initial Project Data when starting the server: ",projectData);

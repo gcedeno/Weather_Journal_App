@@ -45,26 +45,59 @@ const fetchWeather = async (baseURL, zip, apiKey) => {
 };
 
 // POST Request to store date, temp and user input
-const saveData = async (path, data) => {
-  try {
-    await fetch(path, {
+/*   const saveData = async (url = '',data = {})=>{
+  try{
+    console.log("Saving data:",data);
+    const response = await fetch(url, {
+    //await fetch(path, {
       method: 'POST',
+      credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
-    })
+      body: JSON.stringify(data), //body type must match "Content-Type" header
+    });
   } catch (e) {
     throw e
-  };
-};
+  };}; */
+  const saveData = async ( url = '', data = {})=>{
 
+    const response = await fetch(url, {
+    method: 'POST', 
+    credentials: 'same-origin', 
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data), // body data type must match "Content-Type" header        
+  });
+
+    try {
+      const newData = await response.json();
+      return newData;
+    }catch(error) {
+      console.log('error',error);
+    };
+};
 // Update UI dynamically
-const updateUI = async (temperature, newDate, feelings) => {
+/*Original code */
+/* const updateUI = async (temperature, newDate, feelings) => {
   date.innerText = newDate
   temp.innerText = `${temperature} °C`
   content.innerText = feelings
-}
+} */
+/*****New Modification to updated the UI from the GET Route *******/
+const updateUI = async(url = '')=>{
+  const request = await fetch(url);
+  try{
+    const Data = await request.json();
+    console.log("Returned Data when running updateUI:",Data);
+    document.getElementById('date').innerText = Data[0].date;
+    document.getElementById('temp').innerText = `${Data[0].temp} °C`;
+    document.getElementById('content').innerText = Data[0].content;
+  } catch(error){
+    console.log('error',error);
+  };
+};
 
 // Event listener
 // button.addEventListener('click', () => {
@@ -74,15 +107,20 @@ function handleClick (event) {
   fetchWeather(baseURL, zip.value, apikey)
     .then(result => {
       //Using return data and retrieved data from the DOM elements to create the structure of the POST request
-      return {date: newDate, temp: result["main"]["temp"], content: feelings.value}
-    })
-    .then(data => {
+      /****Original code ****/
+     // return {date: newDate, temp: result["main"]["temp"], content: feelings.value}
+      saveData('/apidata', {date: newDate, temp: result["main"]["temp"], content: feelings.value});
+      updateUI('/all')
+    });
+    /* .then(data => {
       saveData('/apidata', data)
-      return data
+      //return data
     })
+    /****Original code ****
     .then(({temp, date, content}) => updateUI(temp, date, content))
     .catch(e => {
       // There can be proper error handling with UI
       console.error(e)
-    })
+    }) 
+    .then(updateUI('/all')); //Updating UI using the GET Route coded in server.js */
 };
