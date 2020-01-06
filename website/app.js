@@ -67,8 +67,10 @@ const updateUI = async (temperature, newDate, feelings) => {
 }
 
 // Event listener
-button.addEventListener('click', () => {
-  //Fetching data and updating the UI
+// button.addEventListener('click', () => {
+document.getElementById('generate').addEventListener('click',handleClick);
+  //Fetching data and updating the UI when clicking on the button
+function handleClick (event) {
   fetchWeather(baseURL, zip.value, apikey)
     .then(result => {
       //Using return data and retrieved data from the DOM elements to create the structure of the POST request
@@ -83,4 +85,4 @@ button.addEventListener('click', () => {
       // There can be proper error handling with UI
       console.error(e)
     })
-});
+};
